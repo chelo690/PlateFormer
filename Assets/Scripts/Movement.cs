@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Transactions;
+using Unity.VisualScripting;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
-
+   
 
 public class Movement : MonoBehaviour
 {
@@ -15,7 +18,7 @@ public class Movement : MonoBehaviour
     public LayerMask groundLayer;
     public float groundRadius;
 
-    [SerializeField] private float MaxHealth = 100f;
+    [SerializeField]private float MaxHealth = 100f;
     public float Health;
 
     public float hitTime;
@@ -27,6 +30,8 @@ public class Movement : MonoBehaviour
 
     [SerializeField] private Animator PlayerAnimator;
 
+    public TextMeshProUGUI healthText;
+
     private bool isFacingRight;
 
     public Rigidbody2D rb;
@@ -37,9 +42,9 @@ public class Movement : MonoBehaviour
     {
         PlayerAnimator = GetComponent<Animator>();
 
-        Health = MaxHealth;
+        Health=MaxHealth;
 
-        //healthText.text = $"Health: {Health}/{MaxHealth}";
+        healthText.text = $"Health: {Health}/{MaxHealth}";
     }
 
     // Update is called once per frame
@@ -48,32 +53,32 @@ public class Movement : MonoBehaviour
 
         rb.AddForce(new Vector2(Horizontal * speed, 0));
 
-        PlayerAnimator.SetFloat("Direction", Horizontal);
+        PlayerAnimator.SetFloat("Direction",Horizontal);
 
         if (isFacingRight == false && Horizontal < 0f)
         {
             flip();
         }
-        else if (isFacingRight == true && Horizontal > 0f)
+        else if(isFacingRight == true && Horizontal > 0f)
         {
             flip();
         }
 
-        if (hitTime <= 0f)
+        if(hitTime<=0f)
         {
             rb.velocity = new Vector2(Horizontal * speed, rb.velocity.y);
         }
         else
         {
-            if (hitFromRight)
-            {
+           if(hitFromRight)
+           {
                 rb.AddForce(new Vector2(-hitForceX, hitForceY));
-            }
-            else if (!hitFromRight == false)
-            {
+           }
+           else if(!hitFromRight==false)
+           {
                 rb.AddForce(new Vector2(hitForceX, hitForceY));
-            }
-            hitTime -= Time.deltaTime;
+           }
+           hitTime-= Time.deltaTime;
         }
     }
 
@@ -89,7 +94,7 @@ public class Movement : MonoBehaviour
 
             rb.velocity = new Vector2(rb.velocity.x, JumpForce);
 
-        }
+        }   
     }
 
     public bool OnGrounded()
@@ -115,7 +120,7 @@ public class Movement : MonoBehaviour
         {
             Health -= damage;
         }
-        //healthText.text = $"Health: {Health}/{MaxHealth}";
+        healthText.text = $"Health: {Health}/{MaxHealth}";
     }
 
     public void AddHealth(float _health)
@@ -128,6 +133,7 @@ public class Movement : MonoBehaviour
         {
             Health += _health;
         }
-        //healthText.text = $"Health: {Health}/{MaxHealth}";
+        healthText.text = $"Health: {Health}/{MaxHealth}";
     }
 }
+
