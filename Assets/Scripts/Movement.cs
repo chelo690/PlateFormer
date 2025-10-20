@@ -6,10 +6,21 @@ using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
-   
+
+
+
 
 public class Movement : MonoBehaviour
 {
+
+    AudioManager audioManager;
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
+
+
     public float speed = 5f;
     public float Horizontal;
     public float JumpForce = 5f;
@@ -91,9 +102,8 @@ public class Movement : MonoBehaviour
 
         if (context.performed == true && OnGrounded())
         {
-
+            audioManager.PlaySFX(audioManager.Jump);
             rb.velocity = new Vector2(rb.velocity.x, JumpForce);
-
         }   
     }
 
