@@ -1,65 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 public class Parallax : MonoBehaviour
 {
-    [Header("Efecto Parallax")]
-    [Tooltip("Movimiento en X (horizontal). 0 = fijo, 1 = igual a la cámara.")]
-    public float parallaxMultiplierX = 0.5f;
-    [Tooltip("Movimiento en Y (vertical). 0 = fijo, 1 = igual a la cámara.")]
-    public float parallaxMultiplierY = 0f; // 0 por defecto para mantener el suelo estático
+    Material mat;
+    float distance;
 
-    [Header("Repetición infinita")]
-    [Tooltip("Actívalo si quieres que el fondo se repita infinito horizontalmente")]
-    public bool infiniteHorizontal = true;
-    [Tooltip("Actívalo si quieres que el fondo se repita infinito verticalmente (opcional)")]
-    public bool infiniteVertical = false;
+    [Range(0f, 0.5f)]
+    public float speed = 0.2f;
 
-    private Transform cameraTransform;
-    private Vector3 lastCameraPosition;
-    private float textureUnitSizeX;
-    private float textureUnitSizeY;
-
-    private void Start()
+    // Start is called before the first frame update
+    void Start()
     {
-        cameraTransform = Camera.main.transform;
-        lastCameraPosition = cameraTransform.position;
-
-        Sprite sprite = GetComponent<SpriteRenderer>().sprite;
-        Texture2D texture = sprite.texture;
-
-        // Tamaño del sprite en unidades del mundo
-        textureUnitSizeX = texture.width / sprite.pixelsPerUnit;
-        textureUnitSizeY = texture.height / sprite.pixelsPerUnit;
+        mat= GetComponent<Renderer>().material;
     }
 
-    private void LateUpdate()
+    // Update is called once per frame
+    void Update()
     {
-        Vector3 cameraDelta = cameraTransform.position - lastCameraPosition;
+        distance += Time.deltaTime * speed;
+        Debug.Log($"distance: {distance}");
+        Debug.Log($"offset: {Vector2.right * distance}");
 
-        // Aplicar movimiento del parallax
-        transform.position += new Vector3(cameraDelta.x * parallaxMultiplierX, cameraDelta.y * parallaxMultiplierY, 0f);
-        lastCameraPosition = cameraTransform.position;
-
-        // Repetición infinita horizontal
-        if (infiniteHorizontal)
-        {
-            if (Mathf.Abs(cameraTransform.position.x - transform.position.x) >= textureUnitSizeX)
-            {
-                float offsetX = (cameraTransform.position.x - transform.position.x) % textureUnitSizeX;
-                transform.position = new Vector3(cameraTransform.position.x + offsetX, transform.position.y, transform.position.z);
-            }
-        }
-
-        // Repetición infinita vertical
-        if (infiniteVertical)
-        {
-            if (Mathf.Abs(cameraTransform.position.y - transform.position.y) >= textureUnitSizeY)
-            {
-                float offsetY = (cameraTransform.position.y - transform.position.y) % textureUnitSizeY;
-                transform.position = new Vector3(transform.position.x, cameraTransform.position.y + offsetY, transform.position.z);
-            }
-        }
+        mat.SetTextureOffset("_MainTex",Vector2.right*distance);
     }
 }
