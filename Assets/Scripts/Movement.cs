@@ -18,7 +18,7 @@ public class Movement : MonoBehaviour
     public LayerMask groundLayer;
     public float groundRadius;
 
-    [SerializeField]private float MaxHealth = 100f;
+    [SerializeField]public float MaxHealth = 100f;
     public float Health;
 
     public float hitTime;
