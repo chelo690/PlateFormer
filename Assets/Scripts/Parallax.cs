@@ -8,7 +8,7 @@ public class Parallax : MonoBehaviour
     Material mat;
     float distance;
 
-    [Range(0f, 0.5f)]
+    [Range(0f, 1f)]
     public float speed = 0.2f;
 
     // Start is called before the first frame update

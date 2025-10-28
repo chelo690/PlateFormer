@@ -34,10 +34,10 @@ public class ParallaxController : MonoBehaviour
         }
 
         // Buscar el fondo más lejano (en eje Z)
-        farthestBack = float.MaxValue;
+        farthestBack = float.MinValue;
         foreach (var bg in Background)
         {
-            if (bg.transform.position.z < farthestBack)
+            if (bg.transform.position.z > farthestBack)
             {
                 Debug.Log($"farthest: {farthestBack}, bg.name: {bg.name}");
                 farthestBack = bg.transform.position.z;
@@ -56,22 +56,16 @@ public class ParallaxController : MonoBehaviour
             backSpeed[i] = 1 - (Background[i].transform.position.z - cam.position.z) / (farthestBack - cam.position.z);
         }
     }
-
-    void LateUpdate()
-    {
-
-    
-    }
-
     private void FixedUpdate()
     {
-        distance = cam.position.x - camStartPos.x;
+        distance = camStartPos.x - cam.position.x;
         transform.position=new Vector3(cam.position.x, transform.position.y, 0);
+        Debug.Log($"distance: {distance}");
 
         for (int i = 0; i < Background.Length; i++)
         {
-            float speed = backSpeed[i] * ParallaxSpeed;
-            mat[i].SetTextureOffset("_MainTex", new Vector2(distance * speed, 0));
+            float speed = (backSpeed[i] + 0.2f) * ParallaxSpeed;
+            mat[i].SetTextureOffset("_MainTex", new Vector2(-distance * speed, 0));
         }
     }
 }
