@@ -9,4 +9,4 @@ EditorBuildSettings:
     path: Assets/Scenes/Marcelo.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   m_configObjects:
-    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 791f7b751a32fe741a7556b40ee1dc45, type: 3}
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 1cba2023d6f8e17449e0f2406fbb567e, type: 3}
