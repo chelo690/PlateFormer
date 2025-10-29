@@ -24,6 +24,7 @@ public class Movement : MonoBehaviour
     public float speed = 5f;
     public float Horizontal;
     public float JumpForce = 5f;
+    public float Vertical;
 
     public Transform groundcheck;
     public LayerMask groundLayer;
@@ -65,6 +66,9 @@ public class Movement : MonoBehaviour
         rb.AddForce(new Vector2(Horizontal * speed, 0));
 
         PlayerAnimator.SetFloat("Direction",Horizontal);
+        Vertical = rb.velocity.y;
+        PlayerAnimator.SetFloat("High", Vertical);
+        Debug.LogWarning(Vertical);
 
         if (isFacingRight == false && Horizontal < 0f)
         {
@@ -104,6 +108,8 @@ public class Movement : MonoBehaviour
         {
             audioManager.PlaySFX(audioManager.Jump);
             rb.velocity = new Vector2(rb.velocity.x, JumpForce);
+
+            //PlayerAnimator.SetFloat("High", rb.);
         }   
     }
 
