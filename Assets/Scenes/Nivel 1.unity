@@ -13638,9 +13638,22 @@ MonoBehaviour:
   MusicSource: {fileID: 1449374077}
   SFXSource: {fileID: 101730697}
   LifeUp: {fileID: 8300000, guid: a637e484d12032a46845b75276409e8c, type: 3}
-  Break: {fileID: 8300000, guid: 2e92fd6b651a30544865541e18e6381e, type: 3}
+  EnemyBreak: {fileID: 8300000, guid: f8e9e4b121f1a5d4eabbfd75a8fddb23, type: 3}
   Coin: {fileID: 8300000, guid: d95073f5203b10343a425af2cd031ae5, type: 3}
   Jump: {fileID: 8300000, guid: 5eaab9ce92ef2754c9505f1b41ab7456, type: 3}
+  Arepickup: {fileID: 8300000, guid: 16829377f0c4e214aa9edcc4309d9c1c, type: 3}
+  Checkpoint: {fileID: 8300000, guid: 631f884f423030346ba8201a4bdc1077, type: 3}
+  Damage: {fileID: 8300000, guid: 07c94ba440b23f04a85d3781dd4ba3ca, type: 3}
+  DeathFem: {fileID: 8300000, guid: ab95c9547f7dcea46bf5aa43a001a176, type: 3}
+  DeathMasc: {fileID: 8300000, guid: e094611052fddf44a8bc0de39d254894, type: 3}
+  Receta: {fileID: 8300000, guid: c54f136a04f20124a9cf8f0c599a8da4, type: 3}
+  Fall: {fileID: 8300000, guid: 572ef68f01101ee48a45ac5d810692ca, type: 3}
+  Finish: {fileID: 8300000, guid: 030a39406f1ff2840b4a5031aede6886, type: 3}
+  Grab: {fileID: 8300000, guid: 2c08d7b125a07d946873a2a4e05a4706, type: 3}
+  MenuConfirm: {fileID: 8300000, guid: 9fc5712604343d14b96d169c4966d6ca, type: 3}
+  MenuSelect: {fileID: 8300000, guid: 1cfd754a481c6a84692dc3a01f56af40, type: 3}
+  Stomp: {fileID: 8300000, guid: 7506c8ef931ad0d4b924732f2c3a991d, type: 3}
+  Throw: {fileID: 8300000, guid: e2486b16adbf7b04dab0cf3cf7ce714d, type: 3}
 --- !u!4 &316258646
 Transform:
   m_ObjectHideFlags: 0

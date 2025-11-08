@@ -144,9 +144,13 @@ public class Movement : MonoBehaviour
             if (PlayerAnimator != null)
                 PlayerAnimator.SetBool("IsDead", true);
 
+            // 🎵 Efecto de sonido de muerte
+            if (audioManager != null)
+                audioManager.PlaySFX(audioManager.DeathMasc);
+
             StartCoroutine(Muerte());
 
-            if(GameManager.instance!= null)
+            if (GameManager.instance != null)
             {
                 GameManager.instance.GameOver();
             }
@@ -194,5 +198,5 @@ public class Movement : MonoBehaviour
             GameManager.instance.GameOver();
         else
             Debug.LogWarning("⚠️ GameManager no encontrado en la escena.");
-    }  
+    }
 }
