@@ -51,6 +51,9 @@ EditorBuildSettings:
     path: Assets/Unity Technologies/QuizU - A UI Toolkit demo/Demos/13_Localization/Localization.unity
     guid: 7ae3172ed76ce402e8e670e1d6b6e621
   - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: dfabb782d6820244e8c6d5db829da835
+  - enabled: 1
     path: Assets/Scenes/Nivel 1.unity
     guid: ed2c98995b8698145b30cc2d2f114d1f
   - enabled: 1
