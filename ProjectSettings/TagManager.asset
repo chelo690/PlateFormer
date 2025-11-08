@@ -4,9 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Checkpoint
   - Audio
   - ZonaMuerte
-  - Checkpoint
   layers:
   - Default
   - TransparentFX
@@ -14,7 +14,7 @@ TagManager:
   - Ground
   - Water
   - UI
-  - Mud
+  - ground
   - 
   - 
   - 

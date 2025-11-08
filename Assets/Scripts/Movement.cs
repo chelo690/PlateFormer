@@ -1,115 +1,114 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using System.Transactions;
-using Unity.VisualScripting;
-using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
 
-
-
-
 public class Movement : MonoBehaviour
 {
-
     AudioManager audioManager;
+    private bool muerto = false;
 
-    private void Awake()
-    {
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-    }
-
-
+    [Header("Movimiento")]
     public float speed = 5f;
     public float Horizontal;
     public float JumpForce = 5f;
     public float Vertical;
-
-    public Transform groundcheck;
-    public LayerMask groundLayer;
-    public float groundRadius;
-
-    [SerializeField]public float MaxHealth = 100f;
-    public float Health;
-
-    public float hitTime;
-    public float hitForceX;
-    public float hitForceY;
-    public bool hitFromRight;
-
-    [SerializeField] public float playerHealth;
-
-    [SerializeField] private Animator PlayerAnimator;
-
-    public TextMeshProUGUI healthText;
-
-    private bool isFacingRight;
-
     public Rigidbody2D rb;
 
+    [Header("Suelo")]
+    public Transform groundcheck;
+    public LayerMask groundLayer;
+    public float groundRadius = 0.2f;
 
-    // Start is called before the first frame update
+    [Header("Vida")]
+    [SerializeField] public float MaxHealth = 100f;
+    public float Health;
+    [SerializeField] public float playerHealth;
+
+    [Header("Golpes")]
+    public float hitTime;
+    public float hitForceX = 5f;
+    public float hitForceY = 5f;
+    public bool hitFromRight;
+
+    [Header("Animador y UI")]
+    [SerializeField] private Animator PlayerAnimator;
+    public TextMeshProUGUI healthText;
+
+    // Si tu sprite base mira a la DERECHA, deja esto en true.
+    private bool isFacingRight = true;
+
+    private void Awake()
+    {
+        var audioObj = GameObject.FindGameObjectWithTag("Audio");
+        if (audioObj != null)
+            audioManager = audioObj.GetComponent<AudioManager>();
+    }
+
     void Start()
     {
         PlayerAnimator = GetComponent<Animator>();
-
-        Health=MaxHealth;
-
-        healthText.text = $"Health: {Health}/{MaxHealth}";
+        Health = MaxHealth;
+        playerHealth = Health;
+        UpdateHealthText();
     }
 
-    // Update is called once per frame
     void Update()
     {
-
-        rb.AddForce(new Vector2(Horizontal * speed, 0));
-
-        PlayerAnimator.SetFloat("Direction",Horizontal);
-        Vertical = rb.velocity.y;
-        PlayerAnimator.SetFloat("High", Vertical);
-
-        if (isFacingRight == false && Horizontal < 0f)
+        // 🔒 Si está muerto, no se mueve ni salta.
+        if (muerto)
         {
+            rb.velocity = Vector2.zero;
+            rb.gravityScale = 1f;
+            if (PlayerAnimator != null)
+                PlayerAnimator.SetBool("IsDead", true);
+            return;
+        }
+
+        // Movimiento directo (sin AddForce -> evita deslizamiento)
+        rb.velocity = new Vector2(Horizontal * speed, rb.velocity.y);
+
+        // Actualizar animaciones
+        if (PlayerAnimator != null)
+        {
+            PlayerAnimator.SetFloat("Direction", Mathf.Abs(Horizontal)); // evita moonwalk
+            Vertical = rb.velocity.y;
+            PlayerAnimator.SetFloat("High", Vertical);
+        }
+
+        // Flip corregido
+        if (Horizontal > 0 && !isFacingRight)
             flip();
-        }
-        else if(isFacingRight == true && Horizontal > 0f)
-        {
+        else if (Horizontal < 0 && isFacingRight)
             flip();
-        }
 
-        if(hitTime<=0f)
-        {
-            rb.velocity = new Vector2(Horizontal * speed, rb.velocity.y);
-        }
-        else
-        {
-           if(hitFromRight)
-           {
-                rb.AddForce(new Vector2(-hitForceX, hitForceY));
-           }
-           else if(!hitFromRight==false)
-           {
-                rb.AddForce(new Vector2(hitForceX, hitForceY));
-           }
-           hitTime-= Time.deltaTime;
-        }
+        // Control de golpes
+        if (hitTime > 0f)
+            hitTime -= Time.deltaTime;
     }
 
     public void Move(InputAction.CallbackContext context)
     {
+        if (muerto) return;
         Horizontal = context.ReadValue<Vector2>().x;
     }
+
     public void Jump(InputAction.CallbackContext context)
     {
+        if (muerto) return;
 
-        if (context.performed == true && OnGrounded())
+        if (context.performed)
         {
-            audioManager.PlaySFX(audioManager.Jump);
-            rb.velocity = new Vector2(rb.velocity.x, JumpForce);
+            Debug.Log("Salto detectado, OnGrounded = " + OnGrounded());
+        }
 
-            //PlayerAnimator.SetFloat("High", rb.);
-        }   
+        if (context.performed && OnGrounded())
+        {
+            if (audioManager != null)
+                audioManager.PlaySFX(audioManager.Jump);
+
+            rb.velocity = new Vector2(rb.velocity.x, JumpForce);
+        }
     }
 
     public bool OnGrounded()
@@ -119,37 +118,81 @@ public class Movement : MonoBehaviour
 
     private void flip()
     {
-
         isFacingRight = !isFacingRight;
         Vector3 localScale = transform.localScale;
         localScale.x *= -1f;
         transform.localScale = localScale;
     }
+
     public void TakeDamage(float damage)
     {
-        if (Health - damage > MaxHealth)
+        // 🚫 Si ya está muerto, no se puede dañar ni empujar
+        if (muerto) return;
+
+        Health -= damage;
+        Health = Mathf.Clamp(Health, 0f, MaxHealth);
+        playerHealth = Health;
+        UpdateHealthText();
+
+        if (Health <= 0f && !muerto)
         {
-            Health -= MaxHealth;
+            muerto = true;
+            rb.velocity = Vector2.zero;
+            rb.isKinematic = false;
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+            if (PlayerAnimator != null)
+                PlayerAnimator.SetBool("IsDead", true);
+
+            StartCoroutine(Muerte());
+
+            if(GameManager.instance!= null)
+            {
+                GameManager.instance.GameOver();
+            }
         }
         else
         {
-            Health -= damage;
+            // Solo aplicar retroceso si aún está vivo
+            if (hitTime <= 0f)
+            {
+                hitTime = 0.2f; // duración breve del retroceso
+                if (hitFromRight)
+                    rb.AddForce(new Vector2(-hitForceX, hitForceY), ForceMode2D.Impulse);
+                else
+                    rb.AddForce(new Vector2(hitForceX, hitForceY), ForceMode2D.Impulse);
+            }
         }
-        healthText.text = $"Health: {Health}/{MaxHealth}";
-        
     }
 
     public void AddHealth(float _health)
     {
-        if (Health + _health > MaxHealth)
-        {
-            Health = MaxHealth;
-        }
-        else
-        {
-            Health += _health;
-        }
-        healthText.text = $"Health: {Health}/{MaxHealth}";
-    }
-}
+        if (muerto) return;
 
+        Health = Mathf.Min(Health + _health, MaxHealth);
+        playerHealth = Health;
+        UpdateHealthText();
+    }
+
+    private void UpdateHealthText()
+    {
+        if (healthText != null)
+            healthText.text = $"Health: {Health}/{MaxHealth}";
+    }
+
+    IEnumerator Muerte()
+    {
+        // Espera breve para permitir animación
+        yield return new WaitForSeconds(1.2f);
+
+        // Desactiva completamente el Rigidbody para evitar rebotes
+        rb.velocity = Vector2.zero;
+        rb.bodyType = RigidbodyType2D.Kinematic;
+
+        // Llama al GameManager
+        if (GameManager.instance != null)
+            GameManager.instance.GameOver();
+        else
+            Debug.LogWarning("⚠️ GameManager no encontrado en la escena.");
+    }  
+}
