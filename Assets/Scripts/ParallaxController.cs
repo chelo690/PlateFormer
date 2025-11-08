@@ -60,7 +60,6 @@ public class ParallaxController : MonoBehaviour
     {
         distance = camStartPos.x - cam.position.x;
         transform.position=new Vector3(cam.position.x, transform.position.y, 0);
-        Debug.Log($"distance: {distance}");
 
         for (int i = 0; i < Background.Length; i++)
         {

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Transactions;
 using Unity.VisualScripting;
@@ -68,7 +68,6 @@ public class Movement : MonoBehaviour
         PlayerAnimator.SetFloat("Direction",Horizontal);
         Vertical = rb.velocity.y;
         PlayerAnimator.SetFloat("High", Vertical);
-        Debug.LogWarning(Vertical);
 
         if (isFacingRight == false && Horizontal < 0f)
         {
@@ -137,6 +136,7 @@ public class Movement : MonoBehaviour
             Health -= damage;
         }
         healthText.text = $"Health: {Health}/{MaxHealth}";
+        
     }
 
     public void AddHealth(float _health)
