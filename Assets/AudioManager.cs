@@ -10,9 +10,22 @@ public class AudioManager : MonoBehaviour
 
     [Header("Clip Audio")] // Asumo que uno habrá de ser el mezclador y el otro el que controla los propios audios
     public AudioClip LifeUp;
-    public AudioClip Break;
+    public AudioClip EnemyBreak;
     public AudioClip Coin;
     public AudioClip Jump;
+    public AudioClip Arepickup;
+    public AudioClip Checkpoint;
+    public AudioClip Damage;
+    public AudioClip DeathFem;
+    public AudioClip DeathMasc;
+    public AudioClip Receta;
+    public AudioClip Fall;
+    public AudioClip Finish;
+    public AudioClip Grab;
+    public AudioClip MenuConfirm;
+    public AudioClip MenuSelect;
+    public AudioClip Stomp;
+    public AudioClip Throw;
 
     public void PlaySFX(AudioClip clip)
     {
