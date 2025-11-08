@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: tilemap-backgrounds_7
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 2088748232, guid: 8f50348da30493946b397c7dfcf79c31, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.46274513, g: 0.6627451, b: 0.18823531, a: 1}
   m_Transform:
     e00: 1
     e01: 0
