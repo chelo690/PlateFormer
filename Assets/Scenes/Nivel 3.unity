@@ -629,7 +629,7 @@ Transform:
   m_GameObject: {fileID: 49117179}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 61.88, y: -0.2800002, z: -10}
+  m_LocalPosition: {x: -66.06, y: -0.2800002, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5963,6 +5963,37 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &256937414
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 256937415}
+  m_Layer: 8
+  m_Name: GroundCheckOlvido
+  m_TagString: Untagged
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &256937415
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256937414}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.001, y: -0.084, z: 1.5279068}
+  m_LocalScale: {x: 0.125, y: 0.125, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 909091793}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &324155967
 GameObject:
   m_ObjectHideFlags: 0
@@ -6056,7 +6087,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7172271982413878520, guid: 9bfa88659d903694b819f3e0c163cf31, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 118.94
+      value: -9
       objectReference: {fileID: 0}
     - target: {fileID: 7172271982413878520, guid: 9bfa88659d903694b819f3e0c163cf31, type: 3}
       propertyPath: m_LocalPosition.y
@@ -19436,6 +19467,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 838080591}
   m_CullTransparentMesh: 1
+--- !u!1 &856860555
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 856860556}
+  m_Layer: 8
+  m_Name: ObstacleCheckOlvido
+  m_TagString: Untagged
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &856860556
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 856860555}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.423, y: 0.001, z: 1.5279068}
+  m_LocalScale: {x: 0.125, y: 0.125, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 909091793}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &905357768
 GameObject:
   m_ObjectHideFlags: 0
@@ -19482,7 +19544,7 @@ GameObject:
   - component: {fileID: 909091791}
   - component: {fileID: 909091790}
   - component: {fileID: 909091795}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Olvido
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19501,9 +19563,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 5
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 1
   m_Material: {fileID: 6200000, guid: 0a230d993a5839a498d2374b30ccc14a, type: 2}
   m_IncludeLayers:
@@ -19515,7 +19577,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &909091791
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19622,10 +19684,12 @@ Transform:
   m_GameObject: {fileID: 909091789}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 78.38, y: -2.2, z: 0.038352}
+  m_LocalPosition: {x: -74.2, y: -2.2, z: 0.038352}
   m_LocalScale: {x: 8, y: 8, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 256937415}
+  - {fileID: 856860556}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &909091794
@@ -19645,10 +19709,16 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   transformJugador: {fileID: 0}
-  velocidadMovimiento: 3
-  distanciaMaxima: 10.02
-  puntoInicial: {x: 78.38, y: -2.2, z: 0}
-  mirandoDerecha: 1
+  velocidadMovimiento: 4.5
+  distanciaMaxima: 100
+  fuerzaSalto: 3
+  capaSuelo:
+    serializedVersion: 2
+    m_Bits: 8
+  groundCheck: {fileID: 256937415}
+  obstacleCheck: {fileID: 856860556}
+  distanciaSuelo: 0.5
+  distanciaObstaculo: 4
   rb2D: {fileID: 909091790}
   animator: {fileID: 909091795}
   estadoActual: 0
@@ -20689,7 +20759,7 @@ Transform:
   m_GameObject: {fileID: 1323250112}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 61.88, y: -0.2800002, z: -10}
+  m_LocalPosition: {x: -66.06, y: -0.2800002, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -21241,7 +21311,7 @@ GameObject:
   - component: {fileID: 1656206852}
   - component: {fileID: 1656206855}
   - component: {fileID: 1656206854}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Edificios
   m_TagString: Untagged
   m_Icon: {fileID: 0}
