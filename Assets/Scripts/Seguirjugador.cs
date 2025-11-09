@@ -19,6 +19,10 @@ public class Seguirjugador : MonoBehaviour
 
     public bool mirandoDerecha;
 
+    public Rigidbody2D rb2D;
+
+    public Animator animator;
+
     public EstadosMovimiento estadoActual;
 
     public enum EstadosMovimiento
@@ -30,6 +34,7 @@ public class Seguirjugador : MonoBehaviour
         Volviendo,
 
     }
+
 
     private void Start()
     {
@@ -52,6 +57,7 @@ public class Seguirjugador : MonoBehaviour
         }
 
         
+
     }
 
     private void EstadoEsperando()
@@ -63,13 +69,21 @@ public class Seguirjugador : MonoBehaviour
             transformJugador = jugadorCollider.transform;
 
             estadoActual = EstadosMovimiento.Siguiendo;
+
         }
+       
+
+        
     }
 
     private void EstadoSiguiendo()
     {
+
+        animator.SetBool("Inmovement", true);
+
         if (transformJugador == null)
         {
+
             estadoActual = EstadosMovimiento.Volviendo;
             return;
         }
@@ -94,11 +108,16 @@ public class Seguirjugador : MonoBehaviour
 
         if (Vector2.Distance(transform.position, puntoInicial) < 0.1f)
         {
+            rb2D.velocity = Vector2.zero;
+
+            animator.SetBool("Inmovement", false);
+
             estadoActual = EstadosMovimiento.Esperando;
+
         }
     }
 
-    private void GirarAObjetivo(Vector3 objetivo)
+    private void GirarAObjetivo(Vector2 objetivo)
     {
         if (objetivo.x > transform.position.x && !mirandoDerecha)
         {
