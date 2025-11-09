@@ -61,7 +61,8 @@ public class Movement : MonoBehaviour
             rb.velocity = Vector2.zero;
             rb.gravityScale = 1f;
             if (PlayerAnimator != null)
-                PlayerAnimator.SetBool("IsDead", true);
+                PlayerAnimator.SetBool("IsDeath", true); // <-- nombre corregido
+            PlayerAnimator.SetBool("IsDeath",muerto);
             return;
         }
 
@@ -134,6 +135,10 @@ public class Movement : MonoBehaviour
         playerHealth = Health;
         UpdateHealthText();
 
+        // 🎵 Sonido al recibir daño (si no muere todavía)
+        if (audioManager != null && Health > 0f)
+            audioManager.PlaySFX(audioManager.Damage);
+
         if (Health <= 0f && !muerto)
         {
             muerto = true;
@@ -142,7 +147,7 @@ public class Movement : MonoBehaviour
             rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
             if (PlayerAnimator != null)
-                PlayerAnimator.SetBool("IsDead", true);
+                PlayerAnimator.SetBool("IsDeath", true); // <-- nombre corregido
 
             // 🎵 Efecto de sonido de muerte
             if (audioManager != null)
