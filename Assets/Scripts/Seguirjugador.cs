@@ -15,7 +15,7 @@ public class Seguirjugador : MonoBehaviour
 
     public float distanciaMaxima;
 
-    public Vector3 puntoInicial;
+    public Vector2 puntoInicial;
 
     public bool mirandoDerecha;
 
