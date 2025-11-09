@@ -18,13 +18,16 @@ public class EnemyController : MonoBehaviour
     [Header("Ataque")]
     public float enemyStrengthX = 5f;
     public float enemyStrengthY = 3f;
-    public float enemyDamage = 20f;
+    public float enemyDamage = 20f; // daño base
+    private float originalDamage;    // para restaurar el daño después del buff
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         enemyAnimator = GetComponent<Animator>();
         actualObjective = enemyMovementPoints[0];
+
+        originalDamage = enemyDamage; // guardamos el valor original
     }
 
     void Update()
@@ -51,7 +54,8 @@ public class EnemyController : MonoBehaviour
 
         rb.MovePosition(rb.position + movement * enemySpeed * Time.deltaTime);
 
-        enemyAnimator.SetFloat("Direction", roundedDirection);
+        if (enemyAnimator != null)
+            enemyAnimator.SetFloat("Direction", roundedDirection);
     }
 
     private void flip()
@@ -66,31 +70,33 @@ public class EnemyController : MonoBehaviour
         if (!collision.gameObject.CompareTag("Player")) return;
 
         Movement player = collision.gameObject.GetComponent<Movement>();
-        if (player == null) return;
+        if (player == null || player.Health <= 0f) return;
 
-        // ⚠️ Si el jugador está muerto, no hacer nada
-        if (playerHealthCero(player)) return;
+        float dañoFinal = enemyDamage; // usamos el daño actual, que puede estar reducido
 
-        // Aplica daño
-        player.TakeDamage(enemyDamage);
+        player.TakeDamage(dañoFinal);
 
-        // Aplica retroceso solo si sigue vivo
+        // Aplicamos retroceso
         player.hitTime = 0.5f;
         player.hitForceX = enemyStrengthX;
         player.hitForceY = enemyStrengthY;
-
-        // Determinar dirección del golpe
         player.hitFromRight = transform.position.x > player.transform.position.x;
 
-        // Animación del enemigo al atacar
         if (enemyAnimator != null)
             enemyAnimator.SetTrigger("Hit");
     }
 
-    private bool playerHealthCero(Movement player)
+    // Método público para aplicar reducción temporal de daño
+    public void AplicarBuffDefensa(float reduction, float duration)
     {
-        // Retorna true si el jugador ya murió o su salud es 0
-        return player == null || player.Health <= 0f;
+        StopAllCoroutines(); // cancelamos buffs previos si hay
+        StartCoroutine(ReducirDañoTemporal(reduction, duration));
+    }
+
+    private IEnumerator ReducirDañoTemporal(float reduction, float duration)
+    {
+        enemyDamage = Mathf.Max(0, originalDamage - reduction); // aplicamos reducción
+        yield return new WaitForSeconds(duration);
+        enemyDamage = originalDamage; // restauramos daño original
     }
 }
-

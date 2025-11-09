@@ -1,7 +1,6 @@
-
 using UnityEngine;
 
-public class ParallaxController : MonoBehaviour
+public class ParallaxMedellin : MonoBehaviour
 {
     Transform cam;
     Vector3 camStartPos;
@@ -10,6 +9,7 @@ public class ParallaxController : MonoBehaviour
     GameObject[] Background;
     Material[] mat;
     float[] backSpeed;
+    Vector3[] bgStartPos; // Guardamos la posición inicial de cada plano
 
     float farthestBack;
 
@@ -25,12 +25,14 @@ public class ParallaxController : MonoBehaviour
         mat = new Material[backCount];
         backSpeed = new float[backCount];
         Background = new GameObject[backCount];
+        bgStartPos = new Vector3[backCount];
 
-        // Obtener todos los planos y sus materiales
+        // Obtener todos los planos y sus materiales, y guardar posición inicial
         for (int i = 0; i < backCount; i++)
         {
             Background[i] = transform.GetChild(i).gameObject;
             mat[i] = Background[i].GetComponent<Renderer>().material;
+            bgStartPos[i] = Background[i].transform.position;
         }
 
         // Buscar el fondo más lejano (en eje Z)
@@ -38,10 +40,7 @@ public class ParallaxController : MonoBehaviour
         foreach (var bg in Background)
         {
             if (bg.transform.position.z > farthestBack)
-            {
-                Debug.Log($"farthest: {farthestBack}, bg.name: {bg.name}");
                 farthestBack = bg.transform.position.z;
-            }
         }
 
         // Calcular las velocidades
@@ -59,7 +58,6 @@ public class ParallaxController : MonoBehaviour
     private void FixedUpdate()
     {
         distance = camStartPos.x - cam.position.x;
-        transform.position = new Vector3(cam.position.x, transform.position.y, 0);
 
         for (int i = 0; i < Background.Length; i++)
         {
@@ -68,3 +66,5 @@ public class ParallaxController : MonoBehaviour
         }
     }
 }
+
+
