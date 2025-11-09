@@ -13675,7 +13675,7 @@ Transform:
   m_GameObject: {fileID: 312528830}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 75.9, y: 0.089999795, z: -10}
+  m_LocalPosition: {x: -0.3099973, y: 0.089999795, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13965,7 +13965,7 @@ Transform:
   m_GameObject: {fileID: 327758224}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -75.2, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -14918,7 +14918,7 @@ Transform:
   m_GameObject: {fileID: 680446723}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 75.9, y: 0.089999795, z: -10}
+  m_LocalPosition: {x: -0.3099973, y: 0.089999795, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15735,7 +15735,7 @@ GameObject:
   m_Component:
   - component: {fileID: 864903628}
   m_Layer: 0
-  m_Name: Coleccionables
+  m_Name: Coleccionables PowerUps
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17216,7 +17216,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7172271982413878520, guid: 9bfa88659d903694b819f3e0c163cf31, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 75.9
+      value: 74.89
       objectReference: {fileID: 0}
     - target: {fileID: 7172271982413878520, guid: 9bfa88659d903694b819f3e0c163cf31, type: 3}
       propertyPath: m_LocalPosition.y
@@ -17334,7 +17334,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7172271982413878520, guid: 9bfa88659d903694b819f3e0c163cf31, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.57
+      value: 73.7
       objectReference: {fileID: 0}
     - target: {fileID: 7172271982413878520, guid: 9bfa88659d903694b819f3e0c163cf31, type: 3}
       propertyPath: m_LocalPosition.y
