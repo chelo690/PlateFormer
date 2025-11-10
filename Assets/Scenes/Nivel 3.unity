@@ -549,12 +549,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 49117179}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00b2d199b96b516448144ab30fb26aed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ApplyAfter: 2
+  m_ApplyAfter: 1
   m_ChannelMask: 1
   m_Gain: 1
   m_Use2DDistance: 1
@@ -629,7 +629,7 @@ Transform:
   m_GameObject: {fileID: 49117179}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 45.629997, y: 9.83, z: -10}
+  m_LocalPosition: {x: -72.99, y: -0.029999733, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -662,7 +662,7 @@ Transform:
   m_GameObject: {fileID: 66261193}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.12, y: -2.16, z: -184.82254}
+  m_LocalPosition: {x: -103.58, y: -9.75, z: -184.82254}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1054,7 +1054,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fe088cde7bb5d444e9da1d03a76e4bbd, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1118,7 +1118,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &181045329
@@ -2459,7 +2459,7 @@ GameObject:
   m_Component:
   - component: {fileID: 310296317}
   - component: {fileID: 310296318}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DialogueMark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2626,11 +2626,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7172271982413878520, guid: 9bfa88659d903694b819f3e0c163cf31, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 120.1
+      value: 1.48
       objectReference: {fileID: 0}
     - target: {fileID: 7172271982413878520, guid: 9bfa88659d903694b819f3e0c163cf31, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.1
+      value: -1.35
       objectReference: {fileID: 0}
     - target: {fileID: 7172271982413878520, guid: 9bfa88659d903694b819f3e0c163cf31, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2699,7 +2699,7 @@ Transform:
   m_GameObject: {fileID: 383393763}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 41.1, y: -1.5, z: 0.009284436}
+  m_LocalPosition: {x: 36.65, y: -1.5, z: 0.009284436}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3551,7 +3551,7 @@ Transform:
   m_GameObject: {fileID: 574148834}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2, y: -2.16, z: -184.82254}
+  m_LocalPosition: {x: -123.66, y: -9.75, z: -184.82254}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3588,7 +3588,7 @@ Transform:
   m_GameObject: {fileID: 601281536}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 59.62, y: -2.821, z: 0}
+  m_LocalPosition: {x: 54.68, y: -2.66, z: 0}
   m_LocalScale: {x: 8, y: 8, z: 8}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -3837,7 +3837,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &624370928
 Transform:
   m_ObjectHideFlags: 0
@@ -17987,13 +17987,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27e35e66fa2337e42b11e0693cec45ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  velocidadMovimiento: 4.5
   radioBusqueda: 18
+  distanciaMaxima: 100
   capaJugador:
     serializedVersion: 2
     m_Bits: 128
-  transformJugador: {fileID: 0}
-  velocidadMovimiento: 4.5
-  distanciaMaxima: 100
   fuerzaSalto: 3
   capaSuelo:
     serializedVersion: 2
@@ -18002,6 +18001,9 @@ MonoBehaviour:
   obstacleCheck: {fileID: 856860556}
   distanciaSuelo: 0.5
   distanciaObstaculo: 4
+  fuerzaEmpujeX: 5
+  fuerzaEmpujeY: 3
+  "da\xF1o": 20
   rb2D: {fileID: 909091790}
   animator: {fileID: 909091795}
   estadoActual: 0
@@ -18057,7 +18059,7 @@ Transform:
   m_GameObject: {fileID: 951643782}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 91.49, y: 5.49, z: 0}
+  m_LocalPosition: {x: -18.41, y: -1.67, z: 0}
   m_LocalScale: {x: 8, y: 8, z: 8}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -19266,7 +19268,7 @@ GameObject:
   - component: {fileID: 1271575444}
   - component: {fileID: 1271575443}
   - component: {fileID: 1271575448}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: NPC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19315,7 +19317,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1271575442}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -19337,7 +19339,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.005722761, y: -0.013942063}
@@ -19369,10 +19371,10 @@ MonoBehaviour:
   dialoguePanel: {fileID: 656679411}
   dialogueText: {fileID: 181045328}
   dialogueLines:
-  - "Llorona: Hace tanto que no pruebo la bandeja paisa de anta\xF1o\u2026"
-  - "Llorona: El Olvido se llev\xF3 la receta, y ahora todos cocinan cosas sin alma."
+  - "Llorona: Hace tanto que no pruebo la bandeja paisa a la antigua\u2026"
+  - 'Llorona: El Olvido se llevo la receta, y ahora todos cocinan cosas sin alma.'
   - "Llorona: Si pudieras traerme los ingredientes antes de que sus secuaces me encuentren\u2026"
-  - "Llorona: quiz\xE1 recuerde el sabor, aunque sea una \xFAltima vez."
+  - 'Llorona: quiza recuerde el sabor, aunque sea una ultima vez.'
 --- !u!212 &1271575446
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19883,7 +19885,7 @@ Transform:
   m_GameObject: {fileID: 1323250112}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 45.629997, y: 9.83, z: -10}
+  m_LocalPosition: {x: -72.99, y: -0.029999733, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20037,7 +20039,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ad980451443d70438faac0bc6c235a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TrackedObjectOffset: {x: 0, y: 0, z: 0}
+  m_TrackedObjectOffset: {x: 0, y: 0.6, z: 0}
   m_LookaheadTime: 0.7
   m_LookaheadSmoothing: 9
   m_LookaheadIgnoreY: 1
@@ -20046,12 +20048,12 @@ MonoBehaviour:
   m_ZDamping: 1.48
   m_TargetMovementOnly: 1
   m_ScreenX: 0.5
-  m_ScreenY: 0.701
+  m_ScreenY: 0.6
   m_CameraDistance: 10
   m_DeadZoneWidth: 0.05
-  m_DeadZoneHeight: 0.12
-  m_DeadZoneDepth: 0
-  m_UnlimitedSoftZone: 0
+  m_DeadZoneHeight: 0.138
+  m_DeadZoneDepth: 1
+  m_UnlimitedSoftZone: 1
   m_SoftZoneWidth: 0.8
   m_SoftZoneHeight: 0.8
   m_BiasX: 0

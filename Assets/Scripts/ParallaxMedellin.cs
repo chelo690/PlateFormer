@@ -55,7 +55,7 @@ public class ParallaxMedellin : MonoBehaviour
             backSpeed[i] = 1 - (Background[i].transform.position.z - cam.position.z) / (farthestBack - cam.position.z);
         }
     }
-    private void FixedUpdate()
+    public void FixedUpdate()
     {
         distance = camStartPos.x - cam.position.x;
 
