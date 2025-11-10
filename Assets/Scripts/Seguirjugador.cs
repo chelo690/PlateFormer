@@ -1,19 +1,18 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Seguirjugador : MonoBehaviour
 {
-    [Header("Movimiento")]
-    public float radioBusqueda = 5f;
-    public LayerMask capaJugador;
-    public Transform transformJugador;
+    [Header("Movimiento y detección")]
     public float velocidadMovimiento = 3f;
-    public float distanciaMaxima = 40f;
+    public float radioBusqueda = 10f;
+    public float distanciaMaxima = 30f;
+    public LayerMask capaJugador;
+    private Transform transformJugador;
     private Vector2 puntoInicial;
     private bool mirandoDerecha = true;
 
-    [Header("Salto")]
+    [Header("Salto y terreno")]
     public float fuerzaSalto = 7f;
     public LayerMask capaSuelo;
     public Transform groundCheck;
@@ -21,27 +20,41 @@ public class Seguirjugador : MonoBehaviour
     public float distanciaSuelo = 0.5f;
     public float distanciaObstaculo = 1f;
 
+    [Header("Ataque")]
+    public float fuerzaEmpujeX = 5f;
+    public float fuerzaEmpujeY = 3f;
+    public float daño = 20f;
+    private float dañoOriginal;
+
     [Header("Referencias")]
     public Rigidbody2D rb2D;
     public Animator animator;
 
-    public EstadosMovimiento estadoActual;
-
-    public enum EstadosMovimiento
-    {
-        Esperando,
-        Siguiendo,
-        Volviendo
-    }
+    public enum EstadoEnemy { Esperando, Siguiendo, Volviendo }
+    public EstadoEnemy estadoActual = EstadoEnemy.Esperando;
 
     private void Start()
     {
         puntoInicial = transform.position;
+        dañoOriginal = daño;
     }
 
     private void Update()
     {
-        // Dibuja rayos visibles
+        switch (estadoActual)
+        {
+            case EstadoEnemy.Esperando:
+                EstadoEsperando();
+                break;
+            case EstadoEnemy.Siguiendo:
+                EstadoSiguiendo();
+                break;
+            case EstadoEnemy.Volviendo:
+                EstadoVolviendo();
+                break;
+        }
+
+        // Raycasts para debug
         if (groundCheck != null)
             Debug.DrawRay(groundCheck.position, Vector2.down * distanciaSuelo, Color.yellow);
         if (obstacleCheck != null)
@@ -49,32 +62,17 @@ public class Seguirjugador : MonoBehaviour
             Vector2 dir = mirandoDerecha ? Vector2.right : Vector2.left;
             Debug.DrawRay(obstacleCheck.position, dir * distanciaObstaculo, Color.magenta);
         }
-
-        switch (estadoActual)
-        {
-            case EstadosMovimiento.Esperando:
-                EstadoEsperando();
-                break;
-            case EstadosMovimiento.Siguiendo:
-                EstadoSiguiendo();
-                break;
-            case EstadosMovimiento.Volviendo:
-                EstadoVolviendo();
-                break;
-        }
-
-        // Debug
-        Debug.Log(HaySuelo() ? "✅ Tocando suelo" : "🟥 No está tocando el suelo");
-        Debug.Log(HayObstaculo() ? "🧱 Obstáculo detectado" : "➡️ Sin obstáculo al frente");
     }
+
+    // ---------- ESTADOS PRINCIPALES ----------
 
     private void EstadoEsperando()
     {
-        Collider2D jugadorCollider = Physics2D.OverlapCircle(transform.position, radioBusqueda, capaJugador);
-        if (jugadorCollider)
+        Collider2D jugador = Physics2D.OverlapCircle(transform.position, radioBusqueda, capaJugador);
+        if (jugador)
         {
-            transformJugador = jugadorCollider.transform;
-            estadoActual = EstadosMovimiento.Siguiendo;
+            transformJugador = jugador.transform;
+            estadoActual = EstadoEnemy.Siguiendo;
         }
     }
 
@@ -82,7 +80,7 @@ public class Seguirjugador : MonoBehaviour
     {
         if (transformJugador == null)
         {
-            estadoActual = EstadosMovimiento.Volviendo;
+            estadoActual = EstadoEnemy.Volviendo;
             return;
         }
 
@@ -90,16 +88,15 @@ public class Seguirjugador : MonoBehaviour
         GirarAObjetivo(transformJugador.position);
         transform.position = Vector2.MoveTowards(transform.position, transformJugador.position, velocidadMovimiento * Time.deltaTime);
 
-        // Salto ante obstáculo
+        // Salto automático ante obstáculo
         if (HayObstaculo() && HaySuelo())
-        {
             rb2D.AddForce(Vector2.up * fuerzaSalto, ForceMode2D.Impulse);
-        }
 
+        // Si se aleja demasiado, volver al punto inicial
         if (Vector2.Distance(transform.position, puntoInicial) > distanciaMaxima)
         {
-            estadoActual = EstadosMovimiento.Volviendo;
             transformJugador = null;
+            estadoActual = EstadoEnemy.Volviendo;
         }
     }
 
@@ -107,13 +104,37 @@ public class Seguirjugador : MonoBehaviour
     {
         transform.position = Vector2.MoveTowards(transform.position, puntoInicial, velocidadMovimiento * Time.deltaTime);
         GirarAObjetivo(puntoInicial);
+
         if (Vector2.Distance(transform.position, puntoInicial) < 0.1f)
         {
             rb2D.velocity = Vector2.zero;
             animator.SetBool("Inmovement", false);
-            estadoActual = EstadosMovimiento.Esperando;
+            estadoActual = EstadoEnemy.Esperando;
         }
     }
+
+    // ---------- ATAQUE ----------
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (!collision.gameObject.CompareTag("Player")) return;
+
+        Movement player = collision.gameObject.GetComponent<Movement>();
+        if (player == null || player.Health <= 0f) return;
+
+        float dañoFinal = daño;
+        player.TakeDamage(dañoFinal);
+
+        // Retroceso hacia el jugador
+        player.hitTime = 0.5f;
+        player.hitForceX = fuerzaEmpujeX;
+        player.hitForceY = fuerzaEmpujeY;
+        player.hitFromRight = transform.position.x > player.transform.position.x;
+
+        if (animator != null)
+            animator.SetTrigger("Hit");
+    }
+
+    // ---------- FUNCIONES AUXILIARES ----------
 
     private bool HaySuelo()
     {
@@ -130,8 +151,10 @@ public class Seguirjugador : MonoBehaviour
 
     private void GirarAObjetivo(Vector2 objetivo)
     {
-        if (objetivo.x > transform.position.x && !mirandoDerecha) Girar();
-        else if (objetivo.x < transform.position.x && mirandoDerecha) Girar();
+        if (objetivo.x > transform.position.x && !mirandoDerecha)
+            Girar();
+        else if (objetivo.x < transform.position.x && mirandoDerecha)
+            Girar();
     }
 
     private void Girar()
@@ -140,6 +163,21 @@ public class Seguirjugador : MonoBehaviour
         transform.Rotate(0f, 180f, 0f);
     }
 
+    // ---------- BUFF DE DEFENSA ----------
+    public void AplicarBuffDefensa(float reduccion, float duracion)
+    {
+        StopAllCoroutines();
+        StartCoroutine(ReducirDañoTemporal(reduccion, duracion));
+    }
+
+    private IEnumerator ReducirDañoTemporal(float reduccion, float duracion)
+    {
+        daño = Mathf.Max(0, dañoOriginal - reduccion);
+        yield return new WaitForSeconds(duracion);
+        daño = dañoOriginal;
+    }
+
+    // ---------- DEBUG VISUAL ----------
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -147,3 +185,4 @@ public class Seguirjugador : MonoBehaviour
         Gizmos.DrawWireSphere(puntoInicial, distanciaMaxima);
     }
 }
+
