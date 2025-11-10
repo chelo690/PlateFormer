@@ -4181,7 +4181,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -18794,9 +18794,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27e35e66fa2337e42b11e0693cec45ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidadMovimiento: 4.5
-  radioBusqueda: 18
-  distanciaMaxima: 100
+  velocidadMovimiento: 4
+  radioBusqueda: 40
+  distanciaMaxima: 200
   capaJugador:
     serializedVersion: 2
     m_Bits: 128
