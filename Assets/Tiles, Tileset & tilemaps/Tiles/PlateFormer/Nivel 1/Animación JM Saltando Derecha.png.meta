@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3a0e7d728ebe50d448a286c2a2c423b9
+guid: ef1967db19dd4194f96e5b769d2b2765
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 12
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "Animaci\xF3n NPC Sombrer\xF3n Est\xE1tico_0"
+      name: "Animaci\xF3n JM Saltando Derecha_0"
       rect:
         serializedVersion: 2
         x: 0
@@ -105,20 +105,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 9
-      pivot: {x: 0.4131784, y: 0.400155}
+      pivot: {x: 0.4545455, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d32aac8e078df7f4aa084f85299f50d3
-      internalID: -1559832095
+      spriteID: 7668078e9cb54a34184e379dabe91647
+      internalID: 160753909
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "Animaci\xF3n NPC Sombrer\xF3n Est\xE1tico_1"
+      name: "Animaci\xF3n JM Saltando Derecha_1"
       rect:
         serializedVersion: 2
         x: 16
@@ -126,20 +126,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 9
-      pivot: {x: 0.4131784, y: 0.400155}
+      pivot: {x: 0.4545455, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ff50fde6b55fb5d4d803da5ba29c2364
-      internalID: 1958448235
+      spriteID: f272818b657652c4cae2befff2d0716a
+      internalID: 8257302
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "Animaci\xF3n NPC Sombrer\xF3n Est\xE1tico_2"
+      name: "Animaci\xF3n JM Saltando Derecha_2"
       rect:
         serializedVersion: 2
         x: 32
@@ -147,20 +147,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 9
-      pivot: {x: 0.4131784, y: 0.400155}
+      pivot: {x: 0.4545455, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 025c0f80f6819d0439d7aec952db400c
-      internalID: 636704885
+      spriteID: f2f039d9ced3496408f45b3d3ab50644
+      internalID: -1711521671
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "Animaci\xF3n NPC Sombrer\xF3n Est\xE1tico_3"
+      name: "Animaci\xF3n JM Saltando Derecha_3"
       rect:
         serializedVersion: 2
         x: 48
@@ -168,20 +168,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 9
-      pivot: {x: 0.4131784, y: 0.400155}
+      pivot: {x: 0.4545455, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 49e32612d31b61c4c9147719e6929673
-      internalID: -487263797
+      spriteID: 6785b082d70fc0844a92c426e1385fdd
+      internalID: -614715035
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "Animaci\xF3n NPC Sombrer\xF3n Est\xE1tico_4"
+      name: "Animaci\xF3n JM Saltando Derecha_4"
       rect:
         serializedVersion: 2
         x: 64
@@ -189,14 +189,35 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 9
-      pivot: {x: 0.4131784, y: 0.400155}
+      pivot: {x: 0.4545455, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a6ab7ab8f4a19104bb186477191cda63
-      internalID: 705384795
+      spriteID: 956561ebe7dc7e9499827e15dd48b7e4
+      internalID: -1888614090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Animaci\xF3n JM Saltando Derecha_5"
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 16
+        height: 16
+      alignment: 9
+      pivot: {x: 0.4545455, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4f4524bea2d1c94caf2ee54292d7386
+      internalID: -1131014242
       vertices: []
       indices: 
       edges: []
@@ -204,7 +225,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 6f42fde6c3d633f47946818c867d6855
+    spriteID: 2c70928592859254687fec52b5c07a7a
     internalID: 0
     vertices: []
     indices: 
@@ -212,11 +233,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "Animaci\xF3n NPC Sombrer\xF3n Est\xE1tico_0": -1559832095
-      "Animaci\xF3n NPC Sombrer\xF3n Est\xE1tico_1": 1958448235
-      "Animaci\xF3n NPC Sombrer\xF3n Est\xE1tico_2": 636704885
-      "Animaci\xF3n NPC Sombrer\xF3n Est\xE1tico_3": -487263797
-      "Animaci\xF3n NPC Sombrer\xF3n Est\xE1tico_4": 705384795
+      "Animaci\xF3n JM Saltando Derecha_0": 160753909
+      "Animaci\xF3n JM Saltando Derecha_1": 8257302
+      "Animaci\xF3n JM Saltando Derecha_2": -1711521671
+      "Animaci\xF3n JM Saltando Derecha_3": -614715035
+      "Animaci\xF3n JM Saltando Derecha_4": -1888614090
+      "Animaci\xF3n JM Saltando Derecha_5": -1131014242
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
