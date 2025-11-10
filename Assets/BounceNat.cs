@@ -1,39 +1,61 @@
+﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public class BounceNat : MonoBehaviour
 {
+    private Animator anim;
+    private bool isBouncing = false;
 
-    [SerializeField] private Animator NatillaInt;
-
-    [SerializeField] private float bounceDuration = 0.3f;
+    [SerializeField] private float bounceForce = 3f; // fuerza fija del rebote
+    [SerializeField] private float bounceDuration = 0.2f; // tiempo que el jugador no puede moverse
 
     private void Start()
     {
-        NatillaInt = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         // Verifica si el objeto pertenece al grupo "Jugadores"
-        if (other.transform.parent != null && other.transform.parent.name == "Jugadores")
+        if (collision.transform.parent != null && collision.transform.parent.name == "Jugadores")
         {
-            // Verifica nombres espec�ficos por seguridad
-            if (other.name == "Jose Maria" || other.name == "Maria Jose")
+            if (collision.gameObject.name == "Jose Maria" || collision.gameObject.name == "Maria Jose")
             {
-                // Cambia el bool para activar la animaci�n
-                NatillaInt.SetBool("isStep", true);
+                Rigidbody2D rb = collision.rigidbody;
+                if (rb != null)
+                {
+                    // Elimina cualquier velocidad vertical previa
+                    rb.velocity = new Vector2(rb.velocity.x, 0f);
 
-                // Inicia una corrutina para devolverlo a false
-                StartCoroutine(ResetBounce());
+                    // Aplica una fuerza hacia arriba constante
+                    rb.AddForce(Vector2.up * bounceForce, ForceMode2D.Impulse);
+
+                    // Desactiva movimiento temporalmente
+                    Movement mv = rb.GetComponent<Movement>();
+                    if (mv != null)
+                        StartCoroutine(TemporarilyDisableMovement(mv));
+                }
+
+                // 🔹 Controla la animación solo una vez por rebote
+                if (!isBouncing)
+                    StartCoroutine(DoBounce());
             }
         }
     }
 
-    private System.Collections.IEnumerator ResetBounce()
+    private IEnumerator DoBounce()
     {
+        isBouncing = true;
+        anim.SetBool("isStep", true);
+        yield return new WaitForSeconds(0.4f); // duración de la animación
+        anim.SetBool("isStep", false);
+        isBouncing = false;
+    }
+
+    private IEnumerator TemporarilyDisableMovement(Movement mv)
+    {
+        mv.isBounced = true;
         yield return new WaitForSeconds(bounceDuration);
-        NatillaInt.SetBool("isStep", false);
+        mv.isBounced = false;
     }
 }

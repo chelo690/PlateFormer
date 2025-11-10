@@ -53,8 +53,10 @@ public class Movement : MonoBehaviour
         UpdateHealthText();
     }
 
+    [HideInInspector] public bool isBounced;
     void Update()
     {
+        if (isBounced) return;
         // 🔒 Si está muerto, no se mueve ni salta.
         if (muerto)
         {

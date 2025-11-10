@@ -120,7 +120,7 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: 0.0019531548, y: 0.265625}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,7 +150,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 25126860d0753b64c8448e01a588971b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -237,5 +237,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5bac3d94a07c3442aa87feabbee44e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NatillaInt: {fileID: 0}
-  bounceDuration: 0.3
+  bounceForce: 11
+  bounceDuration: 0.2
