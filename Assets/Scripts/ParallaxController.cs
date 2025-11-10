@@ -56,7 +56,7 @@ public class ParallaxController : MonoBehaviour
             backSpeed[i] = 1 - (Background[i].transform.position.z - cam.position.z) / (farthestBack - cam.position.z);
         }
     }
-    public void LateUpdate()
+    public void FixedUpdate()
     {
         distance = camStartPos.x - cam.position.x;
         transform.position = new Vector3(cam.position.x, transform.position.y, 0);

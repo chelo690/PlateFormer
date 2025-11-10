@@ -881,7 +881,7 @@ Transform:
   m_GameObject: {fileID: 71151613}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.4799995, y: -2.85, z: -10}
+  m_LocalPosition: {x: -6.1099997, y: -2.05, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -16728,7 +16728,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.41960788, g: 0.67058825, b: 0.3137255, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -16778,7 +16778,7 @@ Transform:
   m_GameObject: {fileID: 732255349}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.4799995, y: -2.85, z: -10}
+  m_LocalPosition: {x: -6.1099997, y: -2.05, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20954,8 +20954,8 @@ Transform:
   m_GameObject: {fileID: 1215181427}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: 0.7071068, w: 0}
-  m_LocalPosition: {x: -1.4125, y: 4.6, z: 56.1}
-  m_LocalScale: {x: 2.321922, y: 1, z: 1.2328377}
+  m_LocalPosition: {x: -1.4125, y: 12.3569, z: 56.1}
+  m_LocalScale: {x: 2.321922, y: 1, z: 2.7840972}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 300279726}
@@ -24664,11 +24664,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7172271982413878520, guid: 9bfa88659d903694b819f3e0c163cf31, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.48
+      value: -6.11
       objectReference: {fileID: 0}
     - target: {fileID: 7172271982413878520, guid: 9bfa88659d903694b819f3e0c163cf31, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.85
+      value: -2.05
       objectReference: {fileID: 0}
     - target: {fileID: 7172271982413878520, guid: 9bfa88659d903694b819f3e0c163cf31, type: 3}
       propertyPath: m_LocalPosition.z
