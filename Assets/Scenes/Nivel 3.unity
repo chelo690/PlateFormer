@@ -1593,7 +1593,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fe088cde7bb5d444e9da1d03a76e4bbd, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1657,7 +1657,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &181045329
@@ -20647,10 +20647,10 @@ MonoBehaviour:
   dialoguePanel: {fileID: 656679411}
   dialogueText: {fileID: 181045328}
   dialogueLines:
-  - "Llorona: Hace tanto que no pruebo la bandeja paisa de anta\xF1o\u2026"
-  - "Llorona: El Olvido se llev\xF3 la receta, y ahora todos cocinan cosas sin alma."
+  - 'Llorona: Hace tanto que no pruebo la bandeja paisa a la antigua...'
+  - 'Llorona: El Olvido se llevo la receta, y ahora todos cocinan cosas sin alma.'
   - "Llorona: Si pudieras traerme los ingredientes antes de que sus secuaces me encuentren\u2026"
-  - "Llorona: quiz\xE1 recuerde el sabor, aunque sea una \xFAltima vez."
+  - 'Llorona: quiza recuerde el sabor, aunque sea una ultima vez.'
 --- !u!212 &1271575446
 SpriteRenderer:
   m_ObjectHideFlags: 0
