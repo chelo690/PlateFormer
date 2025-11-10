@@ -3748,7 +3748,7 @@ MonoBehaviour:
   detectionRadius: 0.5
   enemyStrengthX: 5
   enemyStrengthY: 2
-  enemyDamage: 10
+  enemyDamage: 15
 --- !u!212 &364083064
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19345,7 +19345,7 @@ MonoBehaviour:
   detectionRadius: 0.5
   enemyStrengthX: 5
   enemyStrengthY: 2
-  enemyDamage: 10
+  enemyDamage: 15
 --- !u!212 &966790464
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20297,7 +20297,7 @@ MonoBehaviour:
   detectionRadius: 0.5
   enemyStrengthX: 5
   enemyStrengthY: 2
-  enemyDamage: 10
+  enemyDamage: 15
 --- !u!212 &1130381544
 SpriteRenderer:
   m_ObjectHideFlags: 0
